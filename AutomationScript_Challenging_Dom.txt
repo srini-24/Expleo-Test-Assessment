@@ -1,0 +1,230 @@
+package newproject;
+import org.openqa.selenium.WebDriver;
+//import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+public class PG1 {
+	
+	public boolean status=false;
+	 By challenging_dom_locator=By.xpath("//div/h3");
+	 By challengingdomtext_loc=By.xpath("//div/h3[contains(text(),'Challenging DOM')]");
+	 By buttonone_loc=By.xpath("//div[contains(@class,'large-2')]/a[@class='button']");
+	 By buttontwo_loc=By.xpath("//div[contains(@class,'large-2')]/a[@class='button alert']");
+	 By buttonthree_loc=By.xpath("//div[contains(@class,'large-2')]/a[@class='button success']");
+
+
+    public static void main(String[] args) {
+        
+		System.setProperty("webdriver.chrome.driver","G:\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+    	
+        String url = "https://the-internet.herokuapp.com/challenging_dom";
+        String expectedTitle = "The Internet";
+        String actualTitle = "";
+
+        // launch chrome direct it to the Base URL
+        driver.get(url);
+        driver.manage().window().maximize();
+        Thread.sleep(3000);
+
+        // get the actual value of the title
+        actualTitle = driver.getTitle();
+
+        /*
+         * compare the actual title of the page with the expected one and print
+         * the result as "Passed" or "Failed"
+         */
+         Assert.assertEquals(actualTitle, expectedTitle);
+         
+         WebDriverWait wait=new WebDriverWait(driver,30);
+         // Check the page header matches the expected name "Challenging DOM"
+         
+         String challenging_dom_text="Challenging DOM";
+         String challenging_dom=driver.findelement(challenging_dom_locator).getText();
+         Assert.assertEquals(challenging_dom_text, challenging_dom);
+         
+         WebDriverWait wait=new WebDriverWait(driver,30);
+         status=driver.findelement(challengingdomtext_loc).isDisplayed();
+         Assert.assertTrue(status);
+         
+          //Test that checks the operation of the element "button" in blue
+          //This also checks that the element text is changed after the button is clicked
+          
+          String actual_btn_one=driver.findelement(buttonone_loc).getText();
+          status=driver.findelement(buttonone_loc).click();
+          Assert.assertTrue(status);
+          String changed_btn_one=driver.findelement(buttonone_loc).getText();
+          if(!actual_btn_one.equals(changed_btn_one)){
+          	System.out.println("First Button Text Changed");
+          }else{
+          	System.out.println("First Button Text not Changed");
+          }
+          
+          //Test that checks the operation of the element "button" in red
+          //This also checks that the element text is changed after the button is clicked
+          
+          String actual_btn_two=driver.findelement(buttontwo_loc).getText();
+          status=driver.findelement(buttontwo_loc).click();
+          Assert.assertTrue(status);
+          String changed_btn_two=driver.findelement(buttontwo_loc).getText();
+          if(!actual_btn_two.equals(changed_btn_two)){
+          	System.out.println("Second Button Text Changed");
+          }else{
+          	System.out.println("Second Button Text not Changed");
+          }
+          
+          String actual_btn_two=driver.findelement(buttontwo_loc).getText();
+          status=driver.findelement(buttontwo_loc).click();
+          Assert.assertTrue(status);
+          String changed_btn_two=driver.findelement(buttontwo_loc).getText();
+          if(!actual_btn_two.equals(changed_btn_two)){
+          	System.out.println("Second Button Text Changed");
+          }else{
+          	System.out.println("Second Button Text not Changed");
+          }
+          
+          String actual_btn_three=driver.findelement(buttonthree_loc).getText();
+          status=driver.findelement(buttonthree_loc).click();
+          Assert.assertTrue(status);
+          String changed_btn_three=driver.findelement(buttonthree_loc).getText();
+          if(!actual_btn_two.equals(changed_btn_three)){
+          	System.out.println("Third Button Text Changed");
+          }else{
+          	System.out.println("Third Button Text not Changed");
+          }
+          
+          //Check the static header of the table
+          
+          Thread.sleep(3000);
+          String lorem_loc=driver.findelement(By.xpath("//div[contains(@class,'large-10 columns')]/table//tr/th[1]")).getText();
+          Assert.assertEquals(lorem_loc, "Lorem");
+          String Ipsum_loc=driver.findelement(By.xpath("//div[contains(@class,'large-10 columns')]/table//tr/th[2]")).getText();
+          Assert.assertEquals(Ipsum_loc, "Ipsum");
+          String Dolor_loc=driver.findelement(By.xpath("//div[contains(@class,'large-10 columns')]/table//tr/th[3]")).getText();
+          Assert.assertEquals(Dolor_loc, "Dolor");
+          String Sit_loc=driver.findelement(By.xpath("//div[contains(@class,'large-10 columns')]/table//tr/th[4]")).getText();
+          Assert.assertEquals(Dolor_loc, "Sit");
+          String Amet_loc=driver.findelement(By.xpath("//div[contains(@class,'large-10 columns')]/table//tr/th[5]")).getText();
+          Assert.assertEquals(Amet_loc, "Amet");
+          String Diceret_loc=driver.findelement(By.xpath("//div[contains(@class,'large-10 columns')]/table//tr/th[6]")).getText();
+          Assert.assertEquals(Diceret_loc, "Diceret");
+          String Action_loc=driver.findelement(By.xpath("//div[contains(@class,'large-10 columns')]/table//tr/th[7]")).getText();
+          Assert.assertEquals(Action_loc, "Action");
+          
+          //Check first column elements in the table
+          Thread.sleep(3000);
+          String Iuvaret0_loc=driver.findelement(By.xpath("//div[contains(@class,'large-10 columns')]/table//tr[1]/td[1]")).getText();
+          Assert.assertEquals(Iuvaret0_loc, "Iuvaret0");
+          String Iuvaret1_loc=driver.findelement(By.xpath("//div[contains(@class,'large-10 columns')]/table//tr[2]/td[1]")).getText();
+          Assert.assertEquals(Iuvaret1_loc, "Iuvaret1");
+          String Iuvaret2_loc=driver.findelement(By.xpath("//div[contains(@class,'large-10 columns')]/table//tr[3]/td[1]")).getText();
+          Assert.assertEquals(Iuvaret2_loc, "Iuvaret2");
+          String Iuvaret3_loc=driver.findelement(By.xpath("//div[contains(@class,'large-10 columns')]/table//tr[4]/td[1]")).getText();
+          Assert.assertEquals(Iuvaret3_loc, "Iuvaret3");
+          String Iuvaret4_loc=driver.findelement(By.xpath("//div[contains(@class,'large-10 columns')]/table//tr[5]/td[1]")).getText();
+          Assert.assertEquals(Iuvaret4_loc, "Iuvaret4");
+          String Iuvaret5_loc=driver.findelement(By.xpath("//div[contains(@class,'large-10 columns')]/table//tr[6]/td[1]")).getText();
+          Assert.assertEquals(Iuvaret5_loc, "Iuvaret5");
+          String Iuvaret6_loc=driver.findelement(By.xpath("//div[contains(@class,'large-10 columns')]/table//tr[7]/td[1]")).getText();
+          Assert.assertEquals(Iuvaret6_loc, "Iuvaret6");
+          String Iuvaret7_loc=driver.findelement(By.xpath("//div[contains(@class,'large-10 columns')]/table//tr[8]/td[1]")).getText();
+          Assert.assertEquals(Iuvaret7_loc, "Iuvaret7");
+          String Iuvaret8_loc=driver.findelement(By.xpath("//div[contains(@class,'large-10 columns')]/table//tr[9]/td[1]")).getText();
+          Assert.assertEquals(Iuvaret8_loc, "Iuvaret8");
+          String Iuvaret9_loc=driver.findelement(By.xpath("//div[contains(@class,'large-10 columns')]/table//tr[10]/td[1]")).getText();
+          Assert.assertEquals(Iuvaret9_loc, "Iuvaret9");
+          
+          //Check second column elements in the table 
+          
+          Thread.sleep(3000);
+          String Apeirian0_loc=driver.findelement(By.xpath("//div[contains(@class,'large-10 columns')]/table//tr[1]/td[2]")).getText();
+          Assert.assertEquals(Apeirian0_loc, "Apeirian0");
+          String Apeirian1_loc=driver.findelement(By.xpath("//div[contains(@class,'large-10 columns')]/table//tr[2]/td[2]")).getText();
+          Assert.assertEquals(Apeirian1_loc, "Apeirian1");
+          String Apeirian2_loc=driver.findelement(By.xpath("//div[contains(@class,'large-10 columns')]/table//tr[3]/td[2]")).getText();
+          Assert.assertEquals(Apeirian2_loc, "Apeirian2");
+          String Apeirian3_loc=driver.findelement(By.xpath("//div[contains(@class,'large-10 columns')]/table//tr[4]/td[2]")).getText();
+          Assert.assertEquals(Apeirian3_loc, "Apeirian3");
+          String Apeirian4_loc=driver.findelement(By.xpath("//div[contains(@class,'large-10 columns')]/table//tr[5]/td[2]")).getText();
+          Assert.assertEquals(Apeirian4_loc, "Apeirian4");
+          String Apeirian5_loc=driver.findelement(By.xpath("//div[contains(@class,'large-10 columns')]/table//tr[6]/td[2]")).getText();
+          Assert.assertEquals(Apeirian5_loc, "Apeirian5");
+          String Apeirian6_loc=driver.findelement(By.xpath("//div[contains(@class,'large-10 columns')]/table//tr[7]/td[2]")).getText();
+          Assert.assertEquals(Apeirian6_loc, "Apeirian6");
+          String Apeirian7_loc=driver.findelement(By.xpath("//div[contains(@class,'large-10 columns')]/table//tr[8]/td[2]")).getText();
+          Assert.assertEquals(Apeirian7_loc, "Apeirian7");
+          String Apeirian8_loc=driver.findelement(By.xpath("//div[contains(@class,'large-10 columns')]/table//tr[9]/td[2]")).getText();
+          Assert.assertEquals(Apeirian8_loc, "Apeirian8");
+          String Apeirian9_loc=driver.findelement(By.xpath("//div[contains(@class,'large-10 columns')]/table//tr[10]/td[2]")).getText();
+          Assert.assertEquals(Apeirian9_loc, "Apeirian9");
+          
+          //Third Column elements
+        int getsizee=driver.findelements(By.xpath("//div[contains(@class,'large-10 column')]//table//tbody//tr")).size();
+		Thread.sleep(1000);
+		for(int i=1;i<=getsizee;i++){
+			Thread.sleep(2000);
+			String ans=driver.findelement(By.xpath("//div[contains(@class,'large-10 columns')]/table//tr["+i+"]/td[3]")).getText();
+			System.out.println("Dolor Columns" +ans);		
+		}
+		
+		//Fourth Column elements
+		Thread.sleep(1000);
+		for(int i=1;i<=getsizee;i++){
+			Thread.sleep(2000);
+			String ans1=driver.findelement(By.xpath("//div[contains(@class,'large-10 columns')]/table//tr["+i+"]/td[4]")).getText();
+			System.out.println("Sit Columns" +ans1);		
+		}
+		
+		//Fifth Column elements
+		Thread.sleep(1000);
+		for(int i=1;i<=getsizee;i++){
+			Thread.sleep(2000);
+			String ans2=driver.findelement(By.xpath("//div[contains(@class,'large-10 columns')]/table//tr["+i+"]/td[5]")).getText();
+			System.out.println("Amet Columns" +ans2);		
+		}
+		
+		//Sixth Column elements
+		Thread.sleep(1000);
+		for(int i=1;i<=getsizee;i++){
+			Thread.sleep(2000);
+			String ans3=driver.findelement(By.xpath("//div[contains(@class,'large-10 columns')]/table//tr["+i+"]/td[6]")).getText();
+			System.out.println("Diceret Columns" +ans3);		
+		}
+          
+         
+        //Edit Action on all Elements 
+        int getsizee=driver.findelements(By.xpath("//div[contains(@class,'large-10 column')]//table//tbody//tr")).size();
+		Thread.sleep(1000);
+		for(int i=1;i<=getsizee;i++){
+			Thread.sleep(2000);
+			status=driver.findelement(By.xpath("//div[contains(@class,'large-10 columns')]//tr["+i+"]//a[contains(text(),'edit')]")).click();
+			Assert.assertTrue(status);
+		}
+          
+        //Delete Action on all elements  
+       // int getsize=driver.findelements(By.xpath("//div[contains(@class,'large-10 column')]//table//tbody//tr")).size();
+		Thread.sleep(1000);
+		for(int i=1;i<=getsizee;i++){
+			Thread.sleep(2000);
+			status=driver.findelement(By.xpath("//div[contains(@class,'large-10 columns')]//tr["+i+"]//a[contains(text(),'delete')]")).click();
+			Assert.assertTrue(status);
+		}
+       
+       
+       //Check the answer field rolls on page refresh
+       
+       String Answer_dom=driver.findelement(By.xpath("//canvas[contains(@id,'canvas')]")).getAtrribute();
+       driver.navigate.refresh();
+       String Changedanswer_dom=driver.findelement(By.xpath("//canvas[contains(@id,'canvas')]")).getAttribute();
+       if(!Answer_dom.equals(Changedanswer_dom)){
+          	System.out.println("Answer Changed from "+Answer_dom+" to "+Changedanswer_dom+");
+          }else{
+          	System.out.println("Answer Failed to change from "+Answer_dom+" to "+Changedanswer_dom+");
+          }
+       	
+       }
+        
+        driver.close();
+       
+    }
+
+}
